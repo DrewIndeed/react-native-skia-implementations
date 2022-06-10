@@ -1,22 +1,37 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-
-import {HelloWorld} from './components/001-hello-world.js';
+import {ColorBlendings} from './components/ColorBlendings';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <HelloWorld />
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <ColorBlendings />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
